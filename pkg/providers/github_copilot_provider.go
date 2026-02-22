@@ -69,10 +69,7 @@ func (p *GitHubCopilotProvider) Chat(
 		})
 	}
 
-	fullcontent, err := json.Marshal(out)
-	if err != nil {
-		return nil, fmt.Errorf("failed to marshal messages: %w", err)
-	}
+	fullcontent, _ := json.Marshal(out)
 
 	content, err := p.session.Send(ctx, copilot.MessageOptions{
 		Prompt: string(fullcontent),
